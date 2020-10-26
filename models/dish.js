@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { model } = require("../lib/db");
+const mongoosePaginate = require("mongoose-paginate-v2");
 var Schema = mongoose.Schema;
 const db = require("../lib/db");
 
@@ -25,5 +25,7 @@ var Dish = new Schema(
   },
   { timestamps: true }
 );
+Dish.plugin(mongoosePaginate);
+Dish.index({ name: "text" });
 // Compile model from schema
 module.exports = mongoose.model("Dish", Dish);

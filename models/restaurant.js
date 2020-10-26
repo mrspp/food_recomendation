@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongoosastic = require("mongoosastic");
 const db = require("../lib/db");
 var Schema = mongoose.Schema;
 
@@ -61,5 +62,7 @@ var Restaurant = new Schema(
   },
   { timestamps: true }
 );
+Restaurant.plugin(mongoosastic);
+Restaurant.index({ name: "text" });
 // Compile model from schema
 module.exports = mongoose.model("Restaurant", Restaurant);

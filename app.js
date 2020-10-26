@@ -6,7 +6,8 @@ var logger = require("morgan");
 const db = require("./lib/db");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+var restaurantRouter = require("./routes/restaurant");
+var dishesRouter = require("./routes/dishes");
 
 var app = express();
 
@@ -16,12 +17,13 @@ app.set("view engine", "ejs");
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/restaurant", restaurantRouter);
+app.use("/dishes", dishesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -36,7 +38,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  res.json({ status: false, err: err });
 });
 
 module.exports = app;

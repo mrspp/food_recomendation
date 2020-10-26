@@ -1,0 +1,9 @@
+GET http://localhost:4000/dishes/search?query=cháo&page=2 HTTP/1.1
+###
+GET http://localhost:4000/restaurant/48246 HTTP/1.1
+###
+GET http://localhost:4000/restaurant/48246/menu HTTP/1.1
+###
+GET http://localhost:4000/menu/642873 HTTP/1.1
+###
+GET http://localhost:4000/dishes/11587236 HTTP/1.1
