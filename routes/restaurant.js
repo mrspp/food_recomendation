@@ -45,5 +45,12 @@ router.get("/:id/dish", function (req, res, next) {
     }
   });
 });
+router.get("/", (req, res) => {
+  let page = req.query.page || 1;
+  RestaurantModel.paginate({}, { page: page }, (err, results) => {
+    if (err) res.json({ status: false, err: err.code });
+    if (!err) res.json({ status: true, data: results.docs });
+  });
+});
 
 module.exports = router;

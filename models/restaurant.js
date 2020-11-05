@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const mongoosastic = require("mongoosastic");
+const Paginate = require("mongoose-paginate-v2");
 const db = require("../lib/db");
 var Schema = mongoose.Schema;
 
@@ -62,7 +62,7 @@ var Restaurant = new Schema(
   },
   { timestamps: true }
 );
-Restaurant.plugin(mongoosastic);
 Restaurant.index({ name: "text" });
+Restaurant.plugin(Paginate);
 // Compile model from schema
 module.exports = mongoose.model("Restaurant", Restaurant);
